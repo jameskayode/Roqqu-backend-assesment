@@ -1,0 +1,128 @@
+{
+  "info": {
+      "name": "Roqqu Backend API",
+      "description": "API Documentation for User Management System",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+      {
+          "name": "User Endpoints",
+          "item": [
+              {
+                  "name": "Get All Users (Paginated)",
+                  "request": {
+                      "method": "GET",
+                      "url": {
+                          "raw": "{{base_url}}/users?pageNumber=1&pageSize=10",
+                          "host": ["{{base_url}}"],
+                          "path": ["users"],
+                          "query": [
+                              { "key": "pageNumber", "value": "1" },
+                              { "key": "pageSize", "value": "10" }
+                          ]
+                      }
+                  }
+              },
+              {
+                  "name": "Get User Count",
+                  "request": {
+                      "method": "GET",
+                      "url": { "raw": "{{base_url}}/users/count", "host": ["{{base_url}}"], "path": ["users", "count"] }
+                  }
+              },
+              {
+                  "name": "Get User by ID",
+                  "request": {
+                      "method": "GET",
+                      "url": { "raw": "{{base_url}}/users/1", "host": ["{{base_url}}"], "path": ["users", "1"] }
+                  }
+              },
+              {
+                  "name": "Create User",
+                  "request": {
+                      "method": "POST",
+                      "header": [{ "key": "Content-Type", "value": "application/json" }],
+                      "url": { "raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"] },
+                      "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"James\",\n  \"email\": \"james@gmail.com\"\n}"
+                      }
+                  }
+              }
+          ]
+      },
+      {
+          "name": "Address Endpoints",
+          "item": [
+              {
+                  "name": "Get Address by User ID",
+                  "request": {
+                      "method": "GET",
+                      "url": { "raw": "{{base_url}}/addresses/1", "host": ["{{base_url}}"], "path": ["addresses", "1"] }
+                  }
+              },
+              {
+                  "name": "Create Address",
+                  "request": {
+                      "method": "POST",
+                      "header": [{ "key": "Content-Type", "value": "application/json" }],
+                      "url": { "raw": "{{base_url}}/addresses", "host": ["{{base_url}}"], "path": ["addresses"] },
+                      "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"James\",\n  \"email\": \"jamess@gmail.com\",\n  \"street\": \"No 5 Oak Road\",\n  \"city\": \"Ile-Ife\"\n}"
+                      }
+                  }
+              },
+              {
+                  "name": "Update Address",
+                  "request": {
+                      "method": "PATCH",
+                      "header": [{ "key": "Content-Type", "value": "application/json" }],
+                      "url": { "raw": "{{base_url}}/addresses/1", "host": ["{{base_url}}"], "path": ["addresses", "1"] },
+                      "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"street\": \"New Street\",\n  \"city\": \"Lagos\"\n}"
+                      }
+                  }
+              }
+          ]
+      },
+      {
+          "name": "Post Endpoints",
+          "item": [
+              {
+                  "name": "Get Posts by User",
+                  "request": {
+                      "method": "GET",
+                      "url": {
+                          "raw": "{{base_url}}/posts?userId=1",
+                          "host": ["{{base_url}}"],
+                          "path": ["posts"],
+                          "query": [{ "key": "userId", "value": "1" }]
+                      }
+                  }
+              },
+              {
+                  "name": "Create Post",
+                  "request": {
+                      "method": "POST",
+                      "header": [{ "key": "Content-Type", "value": "application/json" }],
+                      "url": { "raw": "{{base_url}}/posts", "host": ["{{base_url}}"], "path": ["posts"] },
+                      "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"title\": \"My First Sermon\",\n  \"body\": \"This is the body of my first sermon\",\n  \"userId\": 1\n}"
+                      }
+                  }
+              },
+              {
+                  "name": "Delete Post",
+                  "request": {
+                      "method": "DELETE",
+                      "url": { "raw": "{{base_url}}/posts/1", "host": ["{{base_url}}"], "path": ["posts", "1"] }
+                  }
+              }
+          ]
+      }
+  ],
+  "variable": [{ "key": "base_url", "value": "http://localhost:5000", "type": "string" }]
+}

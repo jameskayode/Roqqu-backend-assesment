@@ -1,11 +1,14 @@
 {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "moduleResolution": "node",
-      "target": "ESNext",
-      "esModuleInterop": true,
-      "skipLibCheck": true
-    },
-    "include": ["src/**/*.ts", "knexfile.ts"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

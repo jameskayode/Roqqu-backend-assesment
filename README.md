@@ -69,7 +69,7 @@ Before running this project, ensure you have the following installed:
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/username/roqqu-backend-assesment.git
+git clone https://github.com/jameskayode/Roqqu-backend-assesment
 cd roqqu-backend
 ```
 ---

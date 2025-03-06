@@ -1,14 +1,19 @@
-require('dotenv').config();
+import type { Knex } from "knex";
+import dotenv from "dotenv";
+dotenv.config();
 
-const config = {
-  client: 'sqlite3',
+const config: Knex.Config = {
+  client: "better-sqlite3",
   connection: {
     filename: './database.sqlite',
   },
-  useNullAsDefault: true,
+  useNullAsDefault: true, // This ensures null values don't break anything
   migrations: {
-    directory: './migrations',
+    directory: "./migrations",
+  },
+  seeds: {
+    directory: "./seeds",
   },
 };
 
-module.exports = config;
+export default config;

@@ -8,13 +8,13 @@ const express_validator_1 = require("express-validator");
 const database_1 = __importDefault(require("../config/database"));
 // Middleware to validate user creation
 exports.validateCreateUser = [
-    (0, express_validator_1.check)('name').notEmpty().withMessage('Name is required'),
-    (0, express_validator_1.check)('email').isEmail().withMessage('Valid email is required'),
+    (0, express_validator_1.check)('name').trim().notEmpty().withMessage('Name is required'),
+    (0, express_validator_1.check)('email').trim().isEmail().withMessage('Valid email is required'),
     async (req, res, next) => {
         const errors = (0, express_validator_1.validationResult)(req);
         if (!errors.isEmpty()) {
             res.status(400).json({ errors: errors.array() });
-            return;
+            return; // Ensure function stops here
         }
         try {
             const existingUser = await (0, database_1.default)('users').where('email', req.body.email).first();
@@ -22,10 +22,10 @@ exports.validateCreateUser = [
                 res.status(400).json({ error: 'Email already exists' });
                 return;
             }
-            next();
+            return next(); // Call next middleware
         }
         catch (error) {
-            next(error);
+            return next(error); // Proper error handling
         }
     }
 ];

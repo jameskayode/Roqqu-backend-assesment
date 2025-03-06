@@ -7,7 +7,7 @@ const knex_1 = __importDefault(require("knex"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const db = (0, knex_1.default)({
-    client: 'sqlite3',
+    client: 'better-sqlite3',
     connection: {
         filename: './database.sqlite',
     },

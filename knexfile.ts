@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const config: Knex.Config = {
-  client: "better-sqlite3",
+  client: "sqlite3",
   connection: {
     filename: './database.sqlite',
   },

@@ -95,8 +95,13 @@ DATABASE_URL=sqlite:./database.sqlite
 ---
 
 ---
+### Step 4: Build the project 🔥
+```bash
+npm run build
+---
+```
 
-### Step 4: Run Database Migrations  
+### Step 5: Run Database Migrations  
 Automatically create your tables:
 ```bash
 npm run migrate
@@ -105,7 +110,7 @@ npm run migrate
 
 ---
 
-### Step 5: Start Development Server 🔥
+### Step 6: Start Development Server 🔥
 ```bash
 npm run dev
 ```

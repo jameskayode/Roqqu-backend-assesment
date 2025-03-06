@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/18</span>
+                <span class='fraction'>4/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>4/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,8 +99,7 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -112,7 +111,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -139,11 +137,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import db from '../config/database';
 &nbsp;
-// ✅ Get Users Count (returns a number)
-export const getUsersCount = <span class="fstat-no" title="function not covered" >async </span>(): Promise&lt;{ count: number }&gt; =&gt; {
+// Get Users Count (returns a number)
+export const getUsersCount = <span class="fstat-no" title="function not covered" >as</span>ync (): Promise&lt;{ count: number }&gt; =&gt; {
   const result = <span class="cstat-no" title="statement not covered" >await db('users').count('* as count').first();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (!result || !result.count) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!result || !result.count) {</span>
 <span class="cstat-no" title="statement not covered" >    return { count: 0 };</span>
   }
 &nbsp;
@@ -151,7 +149,6 @@ export const getUsersCount = <span class="fstat-no" title="function not covered"
 <span class="cstat-no" title="statement not covered" >  return { count: parseInt(result.count as string, 10) };</span>
 };
 &nbsp;
-// ✅ Fetch Users with Pagination
 export const getUsers = <span class="fstat-no" title="function not covered" >(l</span>imit: number, offset: number) =&gt;
 <span class="cstat-no" title="statement not covered" >  db('users')</span>
     .select('users.id as user_id', 'users.name', 'users.email', 'addresses.address')
@@ -159,17 +156,17 @@ export const getUsers = <span class="fstat-no" title="function not covered" >(l<
     .limit(limit)
     .offset(offset);
 &nbsp;
-// ✅ Fetch a Single User by ID
-export const getUserById = <span class="fstat-no" title="function not covered" >async </span>(id: number) =&gt;
+// Fetch a Single User by ID
+export const getUserById = <span class="fstat-no" title="function not covered" >as</span>ync (id: number) =&gt;
 <span class="cstat-no" title="statement not covered" >  db('users')</span>
     .select('users.id as user_id', 'users.name', 'users.email', 'addresses.address')
     .leftJoin('addresses', 'users.id', '=', 'addresses.userId')
     .where('users.id', id)
     .first();
 &nbsp;
-// ✅ Create User
-export const createUser = <span class="fstat-no" title="function not covered" >async </span>(user: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (db.client.config.client === 'pg') {</span>
+// Create User
+export const createUser = <span class="fstat-no" title="function not covered" >as</span>ync (user: any) =&gt; {
+<span class="cstat-no" title="statement not covered" >  if (db.client.config.client === 'pg') {</span>
 <span class="cstat-no" title="statement not covered" >    return db('users').insert(user).returning('id');</span>
   }
 <span class="cstat-no" title="statement not covered" >  return db('users').insert(user);</span>
@@ -181,7 +178,7 @@ export const createUser = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-05T21:32:01.709Z
+                at 2025-03-06T08:47:56.339Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

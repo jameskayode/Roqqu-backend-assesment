@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.95% </span>
+                <span class="strong">78.37% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>34/42</span>
+                <span class='fraction'>29/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>9/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.48% </span>
+                <span class="strong">78.37% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/41</span>
+                <span class='fraction'>29/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -141,17 +141,11 @@
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -164,7 +158,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,14 +176,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -200,8 +190,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,12 +233,11 @@ export const validateGetPosts = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
-      return; // ✅ Exit the function after sending response
+      return; 
     }
-    return next(); // ✅ Ensures correct return type
+    return next(); 
   }
 ];
-&nbsp;
 // Middleware to validate POST /posts request body
 export const validateCreatePost = [
   check('title').notEmpty().withMessage('Title is required'),
@@ -263,32 +250,27 @@ export const validateCreatePost = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
-      return; // ✅ Exit function properly
+      return;
     }
 &nbsp;
     try {
-      // Validate if user exists
       const user = await getUserById(Number(userId));
       if (!user) {
         res.status(404).json({ message: 'User not found' });
-        return; // ✅ Ensure function exits
+        return; 
       }
-&nbsp;
-      // Check if a post with the same title and body exists for the same user
       const existingPost = await db('posts').where({ title, body, userId }).first();
       <span class="missing-if-branch" title="if path not taken" >I</span>if (existingPost) {
 <span class="cstat-no" title="statement not covered" >        res.status(400).json({ message: 'A post with the same title and body already exists for this user' });</span>
-<span class="cstat-no" title="statement not covered" >        return; </span>// ✅ Ensure function exits
+<span class="cstat-no" title="statement not covered" >        return; </span>
       }
 &nbsp;
-      return next(); // ✅ Correct return type
+      return next(); 
     } catch (error) {
-<span class="cstat-no" title="statement not covered" >      return next(error); </span>// ✅ Proper error handling
+<span class="cstat-no" title="statement not covered" >      return next(error);</span>
     }
   }
 ];
-&nbsp;
-// Middleware to check if a post exists before deleting
 export const validatePostExists = async (req: Request, res: Response, next: NextFunction): Promise&lt;void&gt; =&gt; {
   const postId = Number(req.params.id);
 &nbsp;
@@ -309,7 +291,7 @@ export const validatePostId = [
   
 <span class="fstat-no" title="function not covered" >    (r</span>eq: Request, res: Response, next: NextFunction) =&gt; {
       const errors = <span class="cstat-no" title="statement not covered" >validationResult(req);</span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (!errors.isEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!errors.isEmpty()) {</span>
 <span class="cstat-no" title="statement not covered" >        return res.status(400).json({ errors: errors.array() });</span>
       }
 <span class="cstat-no" title="statement not covered" >      next();</span>
@@ -322,7 +304,7 @@ export const validatePostId = [
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-05T21:32:01.709Z
+                at 2025-03-06T08:47:56.339Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

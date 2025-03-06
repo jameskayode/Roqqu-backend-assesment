@@ -38,6 +38,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
 // POST /users - Create a new user
 export const createUserController = async (req: Request, res: Response) => {
   const { name, email } = req.body;
+  console.log(req.body);
   const [userId] = await db('users').insert({ name, email }).returning('id');
   res.status(201).json({ message: 'User created successfully', userId });
 };

@@ -16,7 +16,7 @@ const app = createExpressApp();
 
 // Middlewares
 app.use(cors());
-app.use(express.json()); // Correct usage
+app.use(express.json());
 
 // API Routes
 app.use('/users', userRoutes);

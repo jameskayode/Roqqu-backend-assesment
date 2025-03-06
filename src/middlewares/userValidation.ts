@@ -4,29 +4,31 @@ import db from '../config/database';
 
 // Middleware to validate user creation
 export const validateCreateUser = [
-  check('name').notEmpty().withMessage('Name is required'),
-  check('email').isEmail().withMessage('Valid email is required'),
-
-  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
-    }
-
-    try {
-      const existingUser = await db('users').where('email', req.body.email).first();
-      if (existingUser) {
-        res.status(400).json({ error: 'Email already exists' });
-        return; 
+    check('name').trim().notEmpty().withMessage('Name is required'),
+    check('email').trim().isEmail().withMessage('Valid email is required'),
+  
+    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return; // Ensure function stops here
       }
-
-      next(); 
-    } catch (error) {
-      next(error); 
+  
+      try {
+        const existingUser = await db('users').where('email', req.body.email).first();
+        if (existingUser) {
+          res.status(400).json({ error: 'Email already exists' });
+          return;
+        }
+  
+        return next(); // Call next middleware
+      } catch (error) {
+        return next(error); // Proper error handling
+      }
     }
-  }
-];
+  ];
+  
 
 // Middleware to validate pagination parameters
 export const validatePagination = (req: Request, res: Response, next: NextFunction): void => {
